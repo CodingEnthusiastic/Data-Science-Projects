@@ -1,0 +1,186 @@
+Below is **a simple SWI-Prolog family-tree knowledge base** + **sample query rules** to answer questions like:
+
+*“If A is the daughter of B, what is the relation between A and C?”*
+(Meaning: derive relations like mother, father, sibling, cousin, aunt, etc.)
+
+---
+
+# ✅ **FAMILY TREE PROLOG CODE (SWISH Compatible)**
+
+Copy–paste this directly into **SWISH Prolog**:
+
+```prolog
+/* --- FACTS --- */
+
+male(john).
+male(raj).
+male(ram).
+male(ron).
+
+female(mary).
+female(sita).
+female(ria).
+female(kavya).
+
+parent(john, raj).      % john is parent of raj
+parent(mary, raj).
+
+parent(john, ria).
+parent(mary, ria).
+
+parent(raj, ron).
+parent(sita, ron).
+
+parent(ria, kavya).
+parent(ram, kavya).
+
+/* --- BASIC RELATIONS --- */
+
+father(F, C) :- male(F), parent(F, C).
+mother(M, C) :- female(M), parent(M, C).
+
+child(C, P) :- parent(P, C).
+
+son(S, P) :- male(S), parent(P, S).
+daughter(D, P) :- female(D), parent(P, D).
+
+/* --- SIBLINGS --- */
+sibling(A, B) :-
+    parent(P, A), parent(P, B),
+    A \= B.
+
+brother(B, X) :- male(B), sibling(B, X).
+sister(S, X) :- female(S), sibling(S, X).
+
+/* --- GRAND RELATIONS --- */
+grandparent(GP, C) :-
+    parent(P, C), parent(GP, P).
+
+grandfather(GF, C) :- male(GF), grandparent(GF, C).
+grandmother(GM, C) :- female(GM), grandparent(GM, C).
+
+/* --- AUNT & UNCLE --- */
+uncle(U, X) :-
+    brother(U, P), parent(P, X).
+
+aunt(A, X) :-
+    sister(A, P), parent(P, X).
+
+/* --- COUSINS --- */
+cousin(A, B) :-
+    parent(P1, A),
+    parent(P2, B),
+    sibling(P1, P2),
+    A \= B.
+```
+
+---
+
+# ✅ **SAMPLE QUERIES + EXPECTED OUTPUT**
+
+## **1. If A is the daughter of B, what is A’s relation to C?**
+
+Example: Ria is the daughter of Mary → What is Ria to Raj?
+
+Query:
+
+```prolog
+daughter(ria, mary), relation(ria, raj, R).
+```
+
+But since we didn’t define a generic `relation/3`, we manually query:
+
+Examples:
+
+### **Is Ria sister of Raj?**
+
+```prolog
+sister(ria, raj).
+```
+
+Output:
+
+```
+true.
+```
+
+### **Is Ria aunt of Ron?**
+
+```prolog
+aunt(ria, ron).
+```
+
+Output:
+
+```
+true.
+```
+
+---
+
+# ⭐ **More Example Queries**
+
+### **1. Who is the father of Raj?**
+
+```prolog
+father(F, raj).
+```
+
+Output:
+
+```
+F = john.
+```
+
+### **2. Who are siblings of Ria?**
+
+```prolog
+sibling(ria, X).
+```
+
+Output:
+
+```
+X = raj.
+```
+
+### **3. Who is grandmother of Ron?**
+
+```prolog
+grandmother(G, ron).
+```
+
+Output:
+
+```
+G = mary.
+```
+
+### **4. Who is cousin of Kavya?**
+
+```prolog
+cousin(kavya, X).
+```
+
+Output:
+
+```
+X = ron.
+```
+
+---
+
+# 👉 Want a **generic relation(A, B, Relation)** predicate?
+
+Example:
+
+```prolog
+relation(ria, raj, sister).
+relation(ria, ron, aunt).
+```
+
+If you want this, say **“give generic relation predicate”** and I will add it.
+
+---
+
+If you want **more sample questions + answers**, or want me to **modify the family tree**, just tell me!
