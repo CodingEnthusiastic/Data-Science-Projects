@@ -5,3 +5,5 @@ The top 10 iPhones by 'Number Of Ratings' are primarily dominated by various mod
 Similarly, the top 10 iPhones by 'Number Of Reviews' largely consist of Apple iPhone SE (256GB, 128GB, and 64GB variants) and Apple iPhone XR (128GB and 64GB) models, with review counts ranging from 6,796 to 8,161.
 The distribution of 'Star Rating' was successfully visualized using a histogram, providing an overview of customer sentiment.
 The distribution of 'Sale Price' was successfully visualized using a histogram, illustrating the price ranges of the products.
+
+Notebook link : https://colab.research.google.com/drive/1Iv4vWhbYQSHu8PQV3_zsYJYCxvVirEFo?usp=sharing
