@@ -1,0 +1,9 @@
+This notebook covers several machine learning concepts. Here's a summary:
+
+Hebb Network Demonstration: The notebook begins with an implementation of a basic Hebbian network, first with a simple (1,0,1,0) example, and then with a HebbNetwork class. This network is trained and evaluated using a synthetic make_blobs dataset.
+Titanic Data Preprocessing: It then proceeds to load and preprocess the Titanic dataset. This involves selecting specific features like pclass, sex, age, fare, embarked, and alone, handling missing values, and encoding categorical features (sex and embarked) using LabelEncoder. The target variable survived is transformed from (0, 1) to (-1, 1). A correlation heatmap of the preprocessed Titanic data is also generated.
+Hebbian Perceptron (with a catch): A HebbianPerceptron class is defined. However, it appears that this perceptron is trained and evaluated using the X_train, y_train, X_test, and y_test variables which were derived from the initial make_blobs synthetic dataset, not the preprocessed Titanic dataset. The reported perfect scores (Precision: 1.000, Recall: 1.000, F1 Score: 1.000, etc.) are consistent with training on a perfectly separable synthetic dataset, not the more complex Titanic data.
+Evaluation Metrics: For the Hebbian Perceptron (trained on the synthetic data), standard classification metrics are calculated and visualized, including a confusion matrix, precision, recall, F1 score, training and test accuracy, and an ROC curve.
+Multi-Layer Perceptron (MLP) Examples: The notebook concludes with two separate sections demonstrating the implementation of a Multi-Layer Perceptron from scratch:
+One example trains an MLP on the Breast Cancer dataset, showing the Mean Squared Error (MSE) convergence over epochs.
+Another example trains an MLP to solve the classic XOR problem, also tracking MSE and displaying the final predicted outputs for the XOR inputs.
