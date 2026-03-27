@@ -1,0 +1,1 @@
+The objective of this experiment is to apply K-Means clustering on a customer dataset to identify distinct groups based on features such as income, spending score, age, and gender. Additionally, the goal is to determine the optimal number of clusters using the Elbow Method and Silhouette Score.
